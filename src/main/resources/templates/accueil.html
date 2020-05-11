@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:include="~{fragments/header :: header}">
+    </head>
+    <link rel="stylesheet" th:href="@{/css/accueil.css}"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css"
+          integrity="sha384-nA7usz4cMKo7RylsCZnpe0V9qx5X7sa011o0OrDzrKUE7Ero1gB48Fjaw6SFxVZe" crossorigin="anonymous">
+</head>
+<body>
+<body th:include="~{fragments/panneau_alerte}"></body>
+<div class="wrapper">
+    <header th:insert="~{fragments/mi_header :: min_header(deconnexion=false)}"></header>
+    <main role="main">
+        <h2 class="heading2">
+            Suivi des remises de masques
+        </h2>
+
+        <p class="texte-juridique">
+            Dans le cadre du COVID-19, vous avez la responsabilité de transmettre aux usagers
+            les masques grand public, lors de la présentation de leur bon de perception et de leur pièce d’identité.
+            Le nombre de masques transmis est précisé par le gouvernement.
+        </p>
+
+        <div class="section-centrale">
+            <div class="liste-etapes">
+                <h3 class="heading3">
+                    Étapes à suivre afin de transmettre les masques
+                </h3>
+                <ol class="etapes-numerotees">
+                    <li>
+                        Scanner le QR Code présent sur le bon de perception de l’usager, ou remplir les informations
+                        manuellement.
+                    </li>
+                    <li>
+                        Vérifier que les informations affichées correspondent bien aux informations de la pièce
+                        d’identité de l’usager.
+                    </li>
+                    <li>
+                        Indiquer le nombre de masques que vous voulez fournir à cet usager, puis valider.
+                    </li>
+                </ol>
+
+                <div class="carte-notice consignes">
+                    Attention : la personne qui se présente peut être mandatée par une personne ne pouvant se déplacer.
+                    Les informations du demandeur et du mandaté doivent être vérifiées.
+                </div>
+
+                <div class="faq">
+                    <a th:href="@{/faq}"><span>Vous avez des questions ?</span> Consultez la FAQ</a>
+                </div>
+            </div>
+
+
+            <form class="formulaire-identification" id="formulaire-identification"
+                  th:action="@{/saisie-identite-demandeur}"
+                  method="post">
+                <h3 class="heading3 titre-formulaire-remettant">
+                    Veuillez vous identifier :
+                </h3>
+
+                <div class="input-group">
+                    <label
+                            id="champ-code-postal-label"
+                            for="champ-code-postal"
+                    >Code Postal <span class="obligatoire">(obligatoire)</span></label
+                    >
+
+                    <input
+                            type="text"
+                            id="champ-code-postal"
+                            name="code-postal"
+                            aria-labelledby="champ-code-postal-label"
+                            placeholder="75001"
+                            required
+                            autofocus
+                            aria-invalid="true"
+                    />
+
+                    <span class="validity" aria-hidden="true"></span>
+                    <p class="exemple"></p>
+
+                </div>
+
+                <div class="select-group">
+                    <label
+                            id="champ-type-remettant-label"
+                            for="champ-type-remettant"
+                    >Type de remettant</label
+                    >
+                    <select
+                            id="champ-type-remettant"
+                            name="type-remettant"
+                            aria-labelledby="champ-type-remettant-label"
+                            aria-invalid="true"
+                            required
+                    >
+                        <option value="CCAS">CCAS</option>
+                        <option value="Mairie">Mairie</option>
+                        <option value="Association">Association</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-button">
+                    <span>
+                    Accéder à l'outil
+
+                    </span>
+                    <img src="/chevron-right.svg" alt="Icone fleche" class="fleche-droite-icone"/>
+                </button>
+            </form>
+        </div>
+
+        <hr/>
+    </main>
+</div>
+<footer th:include="~{fragments/footer :: footer}">
+</footer>
+<script src="https://tag.aticdn.net/445732/smarttag.js"></script>
+<script src="js/accueil.js"></script>
+
+</body>
+</html>

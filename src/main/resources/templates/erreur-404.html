@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:include="~{fragments/header :: header}"></head>
+    <link rel="stylesheet" th:href="@{/css/erreur.css}"/>
+</head>
+
+<body>
+<body th:include="~{fragments/panneau_alerte}"></body>
+<div class="wrapper">
+    <header th:insert="~{fragments/mi_header :: min_header(deconnexion=false)}"></header>
+    <main role="main">
+        <h1 class="gros-titre">404</h1>
+        <h2 class="heading2">La page n'existe pas</h2>
+
+        <hr>
+
+        <p>
+            La page que vous cherchez n'existe pas.<br>
+            Merci de réessayer ou de <a th:href="@{/faq}">consulter notre FAQ</a> si le problème persiste.
+        </p>
+
+        <p>
+            <a class="retour-boutton" href="/saisie-identite-demandeur">Nouvelle remise de masques</a>
+        </p>
+    </main>
+</div>
+<footer th:include="~{fragments/footer :: footer}">
+</footer>
+</body>
+</html>

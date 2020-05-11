@@ -1,0 +1,37 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/dmgp
+    platform: postgres
+    username: admin
+    password: passwd
+    driverClassName: org.postgresql.Driver
+    hikari:
+      maximumPoolSize: 15
+  liquibase:
+    user: admin
+    password: passwd
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        generate_statistics: false
+        show_sql: false
+        use_sql_comments: false
+        format_sql: false
+  profiles:
+    active: dev
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+hash:
+  pepper: ${DMGP_PEPPER}
+server:
+  error:
+    whitelabel:
+      enabled: false
+  forward-headers-strategy: FRAMEWORK
+cookie:
+  secure: true

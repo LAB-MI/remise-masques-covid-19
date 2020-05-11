@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:insert="fragments/header :: header" th:remove="tag"></head>
+    <link rel="stylesheet" th:href="@{/css/confirmation-distribution-masques.css}"/>
+</head>
+
+<body>
+<body th:include="~{fragments/panneau_alerte}"></body>
+<div class="wrapper">
+    <header th:insert="~{fragments/mi_header :: min_header(deconnexion=true)}"></header>
+    <main role="main">
+        <form class="confirmation"
+              accept-charset="UTF-8"
+              th:action="@{/saisie-identite-demandeur}"
+              method="get">
+            <div class="icone-confirmation">
+                <img src="/btn-check-green.svg" alt="Icone check"/>
+            </div>
+            <h2 class="heading2">
+                Remise de masques validée
+            </h2>
+            <button type="submit" class="submit-button">
+                Nouvelle remise de masques
+            </button>
+        </form>
+    </main>
+</div>
+<footer th:include="~{fragments/footer :: footer}">
+</footer>
+</body>
+</html>

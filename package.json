@@ -1,0 +1,44 @@
+{
+  "name": "remise-masques-covid-19",
+  "version": "1.0.0",
+  "description": "Application destinée aux entités remettantes pour distribuer les masques",
+  "main": "",
+  "dependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/runtime-corejs3": "^7.9.0",
+    "core-js": "^3.6.5",
+    "babel-jest": "^25.4.0",
+    "cookieconsent": "^3.1.1",
+    "husky": "^4.2.5",
+    "jest": "^25.4.0",
+    "lint-staged": "^10.1.7",
+    "parcel": "^1.12.4",
+    "prettier": "^2.0.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest",
+    "build": "parcel build front/main/*.js --no-source-maps --out-dir src/main/resources/static/js",
+    "build-dev": "parcel front/main/*.js --no-source-maps --out-dir src/main/resources/static/js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/dmgp/remise-masques-covid-19.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/dmgp/remise-masques-covid-19/issues"
+  },
+  "homepage": "https://gitlab.com/dmgp/remise-masques-covid-19#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,md}": "prettier --write --print-width 120"
+  }
+}

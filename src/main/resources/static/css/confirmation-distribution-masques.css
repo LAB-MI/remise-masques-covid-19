@@ -1,0 +1,24 @@
+.confirmation * {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.confirmation .heading2 {
+  color: #00a94f;
+  margin-top: 2rem;
+}
+
+.confirmation .button {
+  margin-top: 5rem;
+}
+
+.icone-confirmation {
+  margin-top: 3rem;
+}
+
+.icone-confirmation img {
+  max-width: 40px;
+  margin-top: 3rem;
+}

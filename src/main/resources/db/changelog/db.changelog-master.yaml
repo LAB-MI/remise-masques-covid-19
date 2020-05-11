@@ -1,0 +1,117 @@
+databaseChangeLog:
+  - changeSet:
+      id: REM-38
+      author: CGI
+      changes:
+        - createTable:
+            tableName: distribution_masque
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                  name: id
+                  type: uuid
+              - column:
+                  name: demandeur
+                  type: VARCHAR
+              - column:
+                  name: date_distribution
+                  type: DATETIME
+              - column:
+                  name: nb_personnes
+                  type: INT
+              - column:
+                  name: nb_masques
+                  type: INT
+        - addNotNullConstraint:
+            tableName: distribution_masque
+            columnName: date_distribution
+            columnDataType: DATETIME
+        - addNotNullConstraint:
+            tableName: distribution_masque
+            columnName: nb_masques
+            columnDataType: INT
+        - createIndex:
+            tableName: distribution_masque
+            columns:
+              - column:
+                  name: demandeur
+                  type: VARCHAR
+            indexName: idx_distribution_masque_demandeur
+            unique: false
+  - changeSet:
+      id: REM-19
+      author: CGI
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: type_masque
+                  type: VARCHAR
+            tableName: distribution_masque
+        - addNotNullConstraint:
+            tableName: distribution_masque
+            columnName: type_masque
+            columnDataType: VARCHAR
+        - addNotNullConstraint:
+            tableName: distribution_masque
+            columnName: demandeur
+            columnDataType: VARCHAR
+        - addNotNullConstraint:
+            tableName: distribution_masque
+            columnName: nb_personnes
+            columnDataType: INT
+  - changeSet:
+      id: REM-68
+      author: MOMA
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: mode_saisie
+                  type: VARCHAR
+            tableName: distribution_masque
+        - addNotNullConstraint:
+            tableName: distribution_masque
+            columnName: mode_saisie
+            columnDataType: VARCHAR
+  - changeSet:
+      id: REM-88
+      author: CGI
+      changes:
+        - createIndex:
+            tableName: distribution_masque
+            columns:
+              - column:
+                  name: date_distribution
+                  type: DATETIME
+            indexName: idx_distribution_masque_date_distribution
+            unique: false
+  - changeSet:
+      id: REM-154
+      author: CGI
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: code_postal
+                  type: VARCHAR
+            tableName: distribution_masque
+        - addNotNullConstraint:
+            tableName: distribution_masque
+            columnName: code_postal
+            columnDataType: VARCHAR
+        - createIndex:
+            tableName: distribution_masque
+            columns:
+              - column:
+                  name: code_postal
+                  type: VARCHAR
+            indexName: idx_distribution_masque_code_postal
+            unique: false
+        - addColumn:
+            columns:
+              - column:
+                  name: type_remettant
+                  type: VARCHAR
+            tableName: distribution_masque

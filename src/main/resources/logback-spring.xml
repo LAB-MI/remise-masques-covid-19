@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <springProfile name="dev">
+        <include resource="org/springframework/boot/logging/logback/base.xml"/>
+        <logger name="fr.gouv.interieur.dmgp.remettant" additivity="false" level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </logger>
+        <logger name="fr.gouv.interieur.dmgp.remettant.RemettantApplication" additivity="false" level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </logger>
+        <root level="ERROR">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="prod">
+        <appender name="json" class="ch.qos.logback.core.ConsoleAppender">
+            <layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
+                <jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter"/>
+                <appendLineSeparator>true</appendLineSeparator>
+                <timestampFormat>yyyy-MM-dd' 'HH:mm:ss.SSS</timestampFormat>
+            </layout>
+        </appender>
+        <logger name="fr.gouv.interieur.dmgp.remettant" additivity="false" level="INFO">
+            <appender-ref ref="json"/>
+        </logger>
+        <logger name="fr.gouv.interieur.dmgp.remettant.RemettantApplication" additivity="false" level="INFO">
+            <appender-ref ref="json"/>
+        </logger>
+        <root level="ERROR">
+            <appender-ref ref="json"/>
+        </root>
+    </springProfile>
+
+</configuration>

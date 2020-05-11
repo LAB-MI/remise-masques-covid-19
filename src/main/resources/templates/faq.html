@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:insert="fragments/header :: header" th:remove="tag"></head>
+    <link rel="stylesheet" th:href="@{/css/faq.css}"/>
+</head>
+
+<body>
+<div class="wrapper">
+    <header th:insert="~{fragments/mi_header :: min_header(deconnexion=false)}"></header>
+    <main role="main">
+        <h2 class="heading2">
+            FAQ
+        </h2>
+
+        <p class="paragraphe-intro">
+            Pour lutter contre le Covid-19 et préparer le déconfinement à partir du 11 mai, le Gouvernement a annoncé la
+            distribution de masques grand public. Pour en faciliter la mise à disposition, les entités remettantes
+            disposent d'une application permettant de gérer la distribution de ces masques.
+        </p>
+
+        <p>
+            Retrouvez toutes les réponses aux questions relatives :
+        <ul class="liste-tirets">
+            <li>
+                À l'utilisation de cette application.
+            </li>
+            <li>
+                Aux contrôles des documents
+            </li>
+            <li>
+                Aux stocks de masques
+            </li>
+        </ul>
+        </p>
+
+        <h3 class="heading3">
+            Utilisation de l’application
+        </h3>
+
+        <h4 class="heading4 question">
+            Comment dois-je procéder pour une remise de masques ?
+        </h4>
+
+        <p>
+            Suivez les étapes ci-dessous pour procéder à la remise de masques :
+        </p>
+
+        <ol class="liste-ordonnee">
+            <li>
+                <span class="etape">Étape 1</span> : Renseignez votre code postal et le type de votre point de remise
+                (Mairie ou
+                autre), puis
+                cliquez sur le bouton “Accéder à l’outil”.
+            </li>
+            <li>
+                <span class="etape">Étape 2</span> : Scannez le QR Code présenté sur le bon de perception de masques du
+                demandeur.
+            </li>
+            <li>
+                <span class="etape">Étape 3</span> : Procédez aux vérifications selon les cas suivants :
+                <ol class="liste-ordonnee niveau-2">
+                    <li>
+                        <span>Cas n°1</span> : La personne se présente avec un bon à son nom :
+                        <br/>
+                        Vérifiez que les informations d’identité affichées sur le bon correspondent aux informations
+                        présentes sur le justificatif d’identité. Celui-ci doit-être un original.
+                    </li>
+                    <li>
+                        <span>Cas n°2</span> : La personne est mandatée pour récupérer des masques au nom d’une autre
+                        personne
+                        (demandeur). Le bon de perception n’est pas à son nom:
+                        <br/>
+                        La personne doit vous présenter son justificatif d’identité ainsi que celui du demandeur pour
+                        lequel elle est mandatée. Vérifiez que les informations correspondent avec le bon de perception.
+                    </li>
+                    <li>
+                        <span>Cas n°3</span>
+                        : Le demandeur a mentionné des mineurs sur le bon de réception. Vérifiez que le nombre
+                        de mineurs déclarés correspond au justificatif fourni (ex: livret de famille).
+                    </li>
+                </ol>
+            </li>
+            <li>
+                <span class="etape">Étape 4</span> : Cliquez sur “Valider les informations” une fois les vérifications
+                effectuées.
+            </li>
+            <li>
+                <span class="etape">Étape 5</span> : L’application vous présente un nouvel écran qui vous informe si le
+                demandeur a
+                perçu des masques
+                depuis les 15 derniers jours.
+            </li>
+            <li>
+                <span class="etape">Étape 6</span> : Renseignez le nombre et le type (à usage unique ou réutilisable) de
+                masques à
+                distribuer, en distinguant taille adulte et taille enfant, en fonction des informations mentionnées sur
+                le bon de
+                perception.
+            </li>
+            <li>
+                <span class="etape">Étape 7</span> : Cliquez sur “Valider la remise des masques” pour l’enregistrer dans
+                le système.
+            </li>
+            <li>
+                <span class="etape">Étape 8</span> : Remettez les masques à la personne.
+            </li>
+        </ol>
+
+        <h4 class="heading4 question">
+            Sur le premier écran, je ne trouve pas mon type de fournisseur dans la liste déroulante. Que dois-je faire ?
+        </h4>
+
+        <p>
+            Vous pouvez sélectionner la valeur “Autre” dans la liste déroulante.
+        </p>
+
+        <h4 class="heading4 question">
+            Le bouton “Scanner le QR code” ne fonctionne pas. La lecture ne s’active pas. Que dois-je faire ?
+        </h4>
+
+        <p>
+            Pour cette étape, vous devez utiliser un navigateur présent dans la liste suivante :
+            <br/>
+        <ul class="liste-tirets">
+            <li>
+                Mozilla Firefox, Google Chrome, Safari ou une version récente de Microsoft Edge.
+            </li>
+        </ul>
+        </p>
+        <p>
+            Il est également nécessaire que votre terminal soit muni d’une caméra ou d’une webcam opérationnelles.
+        </p>
+        <p>
+            Vous devez autoriser l’usage de votre caméra ou webcam sur le site. Si vous l’avez refusé et vous souhaitez
+            la réactiver, il est nécessaire de mettre à jour les les paramètres de votre navigateur.
+        </p>
+
+        <h4 class="heading4 question">
+            Est-il nécessaire que je renseigne tous les prénoms du demandeur ?
+        </h4>
+
+        <p>
+            Non, vous ne devez renseigner que le premier prénom figurant sur le justificatif d’identité du demandeur.
+        </p>
+
+        <h4 class="heading4 question">
+            Que faire si l’application m’indique que la personne présente pour récupérer des masques à déjà perçu son
+            quota ?
+        </h4>
+
+        <p>
+            Veuillez demandez à la personne si elle ou une autre personne de son/sa foyer/famille s’est présentée
+            récemment avec le bon de perception. Néanmoins, dans ce cas, l’application vous permet d’enregistrer la
+            remise de masques.
+        </p>
+
+        <h3 class="heading3">
+            Contrôle des documents
+        </h3>
+
+        <h4 class="heading4 question">
+            À qui correspond un bon de perception ?
+        </h4>
+
+        <p>
+            Un bon de perception correspond à :
+        <ul class="liste-tirets">
+            <li>
+                une personne majeure
+            </li>
+            <li>
+                une personne majeure et le nombre de mineurs déclarés sur son bon de perception
+            </li>
+            Il est valable durant toute la période de distribution des masques.
+        </ul>
+        </p>
+
+        <h4 class="heading4 question">
+            Quels justificatifs d’identité doivent-être contrôlés lors de la perception ?
+        </h4>
+
+        <p>
+            Le contrôle des justificatifs d’identité dépend des cas auxquels vous êtes confrontés :
+        </p>
+        <ol class="liste-ordonnee niveau-2">
+            <li>
+                <span>Cas n°1</span> : Si la personne présente un bon de perception à son nom et sans enfant, vous devez
+                contrôler :
+                <ul class="liste-tirets">
+                    <li>Le justificatif d’identité de la personne.</li>
+                </ul>
+            </li>
+            <li>
+                <span>Cas n°2</span> : Si la personne présente un bon de perception à son nom avec enfant(s), vous devez
+                contrôler :
+                <ul class="liste-tirets">
+                    <li>
+                        Le justificatif d’identité de la personne ;
+                    </li>
+                    <li>
+                        Le livret de famille pour vérifier le nombre de mineurs qui sont rattachés à la personne.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <span>Cas n°3</span> : Si la personne présente un bon de perception qui n’est pas à son nom, vous devez
+                contrôler :
+                <ul class="liste-tirets">
+                    <li>
+                        La mention de la personne présente en tant que “personne mandatée” sur le document ;
+                    </li>
+                    <li>
+                        La mention de l’identité du demandeur des masques est présente sur le document ;
+                    </li>
+                    <li>
+                        Le justificatif d’identité de la personne qui se présente ;
+                    </li>
+                    <li>
+                        Le justificatif d’identité du demandeur des masques ;
+                        Le cas échéant, que les informations du livret de famille présenté correspondent au nombre de
+                        mineurs
+                        rattachés sur le bon de perception du demandeur de masques.
+                    </li>
+                </ul>
+            </li>
+        </ol>
+
+        <h4 class="heading4 question">
+            Le bon de perception doit-il être régénéré pour chaque demande de masques ?
+        </h4>
+
+        <p>
+            Non. Le bon de perception reste valable pendant toute la période de distribution des masques par l’État.
+            Ce bon de perception doit néanmoins être régénéré à deux conditions :
+        <ul class="liste-tirets">
+            <li>
+                Si le demandeur a changé de situation ;
+            </li>
+            <li>
+                Si le nombre de mineurs mentionnés sur le bon de réception du demandeur a évolué.
+            </li>
+        </ul>
+        </p>
+
+
+        <h4 class="heading4 question">
+            La personne qui se présente à moi n’est pas en possession de son bon de perception pour récupérer des
+            masques. Dois-je lui en fournir ?
+        </h4>
+
+        <p>
+            Oui, vous pouvez procéder à la remise de masques en suivant les étapes suivantes :
+        </p>
+        <ol class="liste-ordonnee">
+            <li>
+                <span class="etape">Étape 1</span> : Vérifiez l’identité de la personne sur présentation d’un
+                justificatif d’identité avec photo (cf. liste des pièces justificatives) ;
+            </li>
+            <li>
+                <span class="etape">Étape 2</span> : Saisissez les informations requises dans l’application ;
+            </li>
+            <li>
+                <span class="etape">Étape 3</span> : Validez ces informations ;
+            </li>
+            <li>
+                <span class="etape">Étape 4</span> : Procédez à la remise des masques ;
+            </li>
+            <li>
+                <span class="etape">Étape 5</span> : Enregistrez la perception.
+            </li>
+        </ol>
+
+        <h4 class="heading4 question">
+            La personne se présente avec un bon de perception au nom de son/sa conjoint(e), mais elle n’est pas mandatée
+            sur le bon. Que dois-je faire ?
+        </h4>
+
+        <p>
+            Quel que soit le statut marital, le/la conjoint(e) doit être explicitement mandaté(e) sur le bon de
+            perception pour récupérer les masques de son/sa conjoint(e).
+            Afin de ne pas bloquer la distribution de masques, vous pouvez effectuer la remise de masques à titre
+            exceptionnel. Il est nécessaire d’informer qu’un nouveau bon doit être généré avec les informations
+            correctes de la personne mandatée sur le bon de perception.
+        </p>
+
+        <h3 class="heading3">
+            Stocks de masques
+        </h3>
+
+        <h4 class="heading4 question">
+            Je n’ai pas reçu mon stock de masques. Que dois-je faire ?
+        </h4>
+
+        <p>
+            Adressez-vous à votre mairie, préfecture ou fournisseur local.
+        </p>
+
+        <h4 class="heading4 question">
+            Que faire si mon stock de masques n’est pas suffisant pour répondre entièrement à la demande de masques d’un
+            bon de perception ?
+        </h4>
+
+        <p>
+            Vous pouvez remettre le nombre de masques que vous êtes en mesure de fournir.
+            Sur l’application, vous pouvez renseigner le nombre de masques que le demandeur a effectivement perçu.
+            Lorsque vous aurez réceptionné de nouveaux masques, le demandeur devra se présenter de nouveau avec le bon
+            généré la première fois pour récupérer le reliquat de son bon de perception.
+        </p>
+
+    </main>
+</div>
+<footer th:include="~{fragments/footer :: footer}">
+</footer>
+</body>
+</html>

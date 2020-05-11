@@ -1,0 +1,139 @@
+.texte-juridique {
+  max-width: 90rem;
+}
+
+@media (min-width: 800px) {
+  .section-centrale {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "etapes form";
+    align-items: center;
+    grid-gap: 0 8.2rem;
+  }
+}
+
+.liste-etapes {
+  grid-area: etapes;
+}
+
+ol {
+  counter-reset: compteur;
+  padding-left: 0;
+}
+
+li + li {
+  margin-top: 1.6rem;
+}
+
+li {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  grid-gap: 1.6rem;
+  align-items: center;
+  max-width: 400px;
+  line-height: 2.4rem;
+}
+
+li:before {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+
+  counter-increment: compteur;
+  content: counter(compteur);
+
+  background: #000192;
+  color: #fff;
+}
+
+.formulaire-identification {
+  grid-area: form;
+  padding: 1.6rem;
+  -webkit-box-shadow: 0 0 13px 0 #ced4da;
+  -moz-box-shadow: 0 0 13px 0 #ced4da;
+  box-shadow: 0 0 13px 0 #ced4da;
+  border-radius: 1rem;
+  max-width: 370px;
+}
+
+@media (min-width: 800px) {
+  .formulaire-identification {
+    padding: 4rem;
+  }
+}
+
+.faq {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.titre-formulaire-remettant {
+  margin-top: 0;
+}
+
+.obligatoire {
+  color: #999999;
+  font-style: italic;
+}
+
+select {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.4rem;
+
+  font-family: inherit;
+  font-size: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: white;
+  background-image: linear-gradient(45deg, transparent 50%, gray 50%),
+    linear-gradient(135deg, gray 50%, transparent 50%), linear-gradient(to right, #ccc, #ccc);
+  background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
+  background-size: 5px 5px, 5px 5px, 1px 1.5em;
+  background-repeat: no-repeat;
+}
+
+.select-group {
+  display: grid;
+  grid-template-columns: 1fr 2.5rem;
+  grid-template-rows: auto auto;
+  grid-template-areas: "label label" "input validite";
+  align-items: center;
+  grid-gap: 0 1rem;
+  max-width: 500px;
+}
+
+.select-group label {
+  grid-area: label;
+  margin-bottom: 1rem;
+}
+
+.select-group select {
+  grid-area: input;
+}
+
+.input-group + .select-group {
+  margin-top: 2rem;
+}
+
+.titre-formulaire-identification {
+  margin-top: 0;
+}
+
+hr {
+  margin-top: 4rem;
+  margin-bottom: 3.9rem;
+}
+
+.fleche-droite-icone {
+  margin-left: 2rem;
+  vertical-align: middle;
+}

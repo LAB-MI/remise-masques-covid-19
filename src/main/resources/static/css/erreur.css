@@ -1,0 +1,46 @@
+.gros-titre {
+  font-family: "marianne-regular", Arial, Helvetica, sans-serif;
+  max-width: 500px;
+  color: #000191;
+  font-size: 9rem;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
+.gros-titre + .heading2 {
+  margin-top: 8px;
+}
+
+.retour-boutton {
+  margin-top: 40px;
+  margin-bottom: 64px;
+  display: inline-block;
+  max-width: 500px;
+  padding: 1.6rem 2.5rem;
+  border-radius: 1rem;
+  border: none;
+
+  background: #000191;
+  color: #fff;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a {
+  color: #000191;
+}
+
+hr {
+  display: inline-block;
+  border: 0;
+  width: 15%;
+  color: #e1000f;
+  background-color: #e1000f;
+  height: 5px;
+  text-align: left;
+  margin-top: 39px;
+  margin-bottom: 40px;
+}

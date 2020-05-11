@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:insert="fragments/header :: header" th:remove="tag"></head>
+    <link rel="stylesheet" th:href="@{/css/distribution-masques.css}"/>
+</head>
+
+<body>
+<body th:include="~{fragments/panneau_alerte}"></body>
+<div class="wrapper">
+    <header th:insert="~{fragments/mi_header :: min_header(deconnexion=true)}"></header>
+    <main role="main">
+        <div class="retour">
+            <a th:href="@{/saisie-identite-demandeur}">Retour aux informations de l'usager</a>
+        </div>
+        <form class="formulaire-distribution-masques" id="formulaire-distribution-masques" accept-charset="UTF-8"
+              th:object="${infosDemandeur}"
+              th:action="@{/distribution-masques}"
+              method="post">
+
+            <h2 class="heading2">
+                Procéder à une remise de masques
+            </h2>
+
+            <div class="faq">
+                <a th:href="@{/faq}"><span>Vous avez des questions ?</span> Consultez la FAQ</a>
+            </div>
+
+            <h3 class="heading3 masque-heading">
+                Masques Adultes
+            </h3>
+
+            <div class="carte-notice">
+                <p>
+                    <img src="/info.svg" alt="Icône Info" class="check"/>
+                    <span th:inline="text">Perception de masques <b>adultes</b> ces 15 derniers jours glissants :
+                        <b>[[${infosDemandeur.nbMasquesAdulteUsageUniqueDejaDistribues}]] à usage unique
+                            / [[${infosDemandeur.nbMasquesAdulteReutilisableDejaDistribues}]] réutilisable(s)</b>
+                    </span>
+                </p>
+            </div>
+
+            <div class="masques-groups">
+                <div class="masques-adulte-usage-unique">
+                    <h4 class="heading4 bold">
+                        Masques à usage unique
+                    </h4>
+
+                    <div class="input-group">
+                        <label
+                                id="champ-adulte-unique-nb-masques-label"
+                                for="champ-adulte-unique-nb-masques"
+                        >Combien voulez-vous en donner ?</label
+                        >
+                        <div class="button-group round toggle" id="champ-adulte-unique-nb-masques">
+
+                            <input
+                                    type="radio"
+                                    id="champ-adulte-unique-nb-masques-0"
+                                    value="0"
+                                    name="champ-adulte-unique-nb-masques-group"
+                                    checked
+                            >
+                            <label class="button1" for="champ-adulte-unique-nb-masques-0">0</label>
+                            <input
+                                    type="radio"
+                                    id="champ-adulte-unique-nb-masques-10"
+                                    name="champ-adulte-unique-nb-masques-group"
+                                    value="10"
+                            >
+                            <label class="button2" for="champ-adulte-unique-nb-masques-10">10</label>
+                            <input
+                                    type="radio"
+                                    id="champ-adulte-unique-nb-masques-20"
+                                    name="champ-adulte-unique-nb-masques-group"
+                                    value="20"
+                            >
+                            <label class="button3" for="champ-adulte-unique-nb-masques-20">20</label>
+                            <input
+                                    type="radio"
+                                    id="champ-adulte-unique-nb-masques-50"
+                                    name="champ-adulte-unique-nb-masques-group"
+                                    value="50"
+                            >
+                            <label class="button4" for="champ-adulte-unique-nb-masques-50">50</label>
+                            <input
+                                    type="radio"
+                                    id="champ-adulte-unique-nb-masques-70"
+                                    name="champ-adulte-unique-nb-masques-group"
+                                    value="70"
+                            >
+                            <label class="button5" for="champ-adulte-unique-nb-masques-70">70</label>
+                            <input
+                                    type="radio"
+                                    id="champ-adulte-unique-nb-masques-100"
+                                    name="champ-adulte-unique-nb-masques-group"
+                                    value="100"
+                            >
+                            <label class="button6" for="champ-adulte-unique-nb-masques-100">100</label>
+                        </div>
+
+                    </div>
+
+                    <div class="input-group">
+                        <label
+                                id="champ-adulte-unique-nb-masques-libre-label"
+                                for="champ-alias-adulte-unique-nb-masques-libre"
+                        >Ou saisissez un nombre libre :</label
+                        >
+
+                        <input
+                                type="hidden"
+                                min="0"
+                                id="champ-adulte-unique-nb-masques-libre"
+                                name="nbMasquesAdulteUsageUnique"
+                                value="0"
+                        />
+                        <input
+                                type="number"
+                                min="0"
+                                id="champ-alias-adulte-unique-nb-masques-libre"
+                                aria-labelledby="champ-alias-adulte-unique-nb-masques-libre-label"
+                                placeholder="45"
+                        />
+                        <p class="exemple"></p>
+
+                    </div>
+
+                </div>
+                <div class="masques-adulte-reutilisable">
+                    <h4 class="heading4 bold">
+                        Masques réutilisables
+                    </h4>
+
+                    <div class="input-group">
+                        <label
+                                id="champ-adulte-reutilisable-nb-masques-label"
+                                for="champ-adulte-reutilisable-nb-masques"
+                        >Combien voulez-vous en donner ?</label
+                        >
+                        <div class="button-group round toggle" id="champ-adulte-reutilisable-nb-masques">
+                            <input
+                                    type="radio"
+                                    id="champ-adulte-reutilisable-nb-masques-0"
+                                    value="0"
+                                    name="champ-adulte-reutilisable-nb-masques-group"
+                                    checked
+                            >
+                            <label class="button1" for="champ-adulte-reutilisable-nb-masques-0">0</label>
+                            <input
+                                    type="radio"
+                                    id="champ-adulte-reutilisable-nb-masques-2"
+                                    value="2"
+                                    name="champ-adulte-reutilisable-nb-masques-group"
+                            >
+                            <label class="button2" for="champ-adulte-reutilisable-nb-masques-2">2</label>
+                            <input
+                                    type="radio"
+                                    id="champ-adulte-reutilisable-nb-masques-5"
+                                    value="5"
+                                    name="champ-adulte-reutilisable-nb-masques-group"
+                            >
+                            <label class="button3" for="champ-adulte-reutilisable-nb-masques-5">5</label>
+                            <input
+                                    type="radio"
+                                    id="champ-adulte-reutilisable-nb-masques-10"
+                                    value="10"
+                                    name="champ-adulte-reutilisable-nb-masques-group"
+                            >
+                            <label class="button4" for="champ-adulte-reutilisable-nb-masques-10">10</label>
+                            <input
+                                    type="radio"
+                                    id="champ-adulte-reutilisable-nb-masques-15"
+                                    value="15"
+                                    name="champ-adulte-reutilisable-nb-masques-group"
+                            >
+                            <label class="button5" for="champ-adulte-reutilisable-nb-masques-15">15</label>
+                            <input
+                                    type="radio"
+                                    id="champ-adulte-reutilisable-nb-masques-20"
+                                    value="20"
+                                    name="champ-adulte-reutilisable-nb-masques-group"
+                            >
+                            <label class="button6" for="champ-adulte-reutilisable-nb-masques-20">20</label>
+                        </div>
+
+                    </div>
+
+                    <div class="input-group">
+                        <label
+                                id="champ-adulte-reutilisable-nb-masques-libre-label"
+                                for="champ-alias-adulte-reutilisable-nb-masques-libre"
+                        >Ou saisissez un nombre libre :</label
+                        >
+
+                        <input
+                                type="hidden"
+                                min="0"
+                                id="champ-adulte-reutilisable-nb-masques-libre"
+                                name="nbMasquesAdulteReutilisable"
+                                value="0"
+                        />
+                        <input
+                                type="number"
+                                min="0"
+                                id="champ-alias-adulte-reutilisable-nb-masques-libre"
+                                aria-labelledby="champ-alias-adulte-reutilisable-nb-masques-libre-label"
+                                placeholder="45"
+                        />
+                        <p class="exemple"></p>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <hr class="solid">
+
+            <h3 class="heading3 masque-heading">
+                Masques Enfants
+            </h3>
+
+            <div class="carte-notice">
+                <p>
+                    <img src="/info.svg" alt="Icône Info" class="check"/>
+                    <span th:inline="text">Perception de masques <b>enfants</b> ces 15 derniers jours glissants :
+                        <b>[[${infosDemandeur.nbMasquesEnfantUsageUniqueDejaDistribues}]] à usage unique
+                            / [[${infosDemandeur.nbMasquesEnfantReutilisableDejaDistribues}]] réutilisable(s)</b></span>
+                </p>
+            </div>
+
+            <div class="masques-groups">
+                <div class="masques-enfant-usage-unique">
+                    <h4 class="heading4 bold">
+                        Masques à usage unique
+                    </h4>
+
+                    <div class="input-group">
+                        <label
+                                id="champ-enfant-unique-nb-masques-label"
+                                for="champ-enfant-unique-nb-masques"
+                        >Combien voulez-vous en donner ?</label
+                        >
+                        <div class="button-group round toggle" id="champ-enfant-unique-nb-masques">
+
+                            <input
+                                    type="radio"
+                                    id="champ-enfant-unique-nb-masques-0"
+                                    value="0"
+                                    name="champ-enfant-unique-nb-masques-group"
+                                    checked
+                            >
+                            <label class="button1" for="champ-enfant-unique-nb-masques-0">0</label>
+                            <input
+                                    type="radio"
+                                    id="champ-enfant-unique-nb-masques-10"
+                                    name="champ-enfant-unique-nb-masques-group"
+                                    value="10"
+                            >
+                            <label class="button2" for="champ-enfant-unique-nb-masques-10">10</label>
+                            <input
+                                    type="radio"
+                                    id="champ-enfant-unique-nb-masques-20"
+                                    name="champ-enfant-unique-nb-masques-group"
+                                    value="20"
+                            >
+                            <label class="button3" for="champ-enfant-unique-nb-masques-20">20</label>
+                            <input
+                                    type="radio"
+                                    id="champ-enfant-unique-nb-masques-50"
+                                    name="champ-enfant-unique-nb-masques-group"
+                                    value="50"
+                            >
+                            <label class="button4" for="champ-enfant-unique-nb-masques-50">50</label>
+                            <input
+                                    type="radio"
+                                    id="champ-enfant-unique-nb-masques-70"
+                                    name="champ-enfant-unique-nb-masques-group"
+                                    value="70"
+                            >
+                            <label class="button5" for="champ-enfant-unique-nb-masques-70">70</label>
+                            <input
+                                    type="radio"
+                                    id="champ-enfant-unique-nb-masques-100"
+                                    name="champ-enfant-unique-nb-masques-group"
+                                    value="100"
+                            >
+                            <label class="button6" for="champ-enfant-unique-nb-masques-100">100</label>
+                        </div>
+
+                    </div>
+
+                    <div class="input-group">
+                        <label
+                                id="champ-enfant-unique-nb-masques-libre-label"
+                                for="champ-alias-enfant-unique-nb-masques-libre"
+                        >Ou saisissez un nombre libre :</label
+                        >
+
+                        <input
+                                type="hidden"
+                                min="0"
+                                id="champ-enfant-unique-nb-masques-libre"
+                                name="nbMasquesEnfantUsageUnique"
+                                value="0"
+                        />
+                        <input
+                                type="number"
+                                min="0"
+                                id="champ-alias-enfant-unique-nb-masques-libre"
+                                aria-labelledby="champ-alias-enfant-unique-nb-masques-libre-label"
+                                placeholder="45"
+                        />
+                        <p class="exemple"></p>
+
+                    </div>
+
+                </div>
+
+                <div class="masques-enfant-reutilisable">
+                    <h4 class="heading4 bold">
+                        Masques réutilisables
+                    </h4>
+
+                    <div class="input-group">
+                        <label
+                                id="champ-enfant-enfant-reutilisable-nb-masques-label"
+                                for="champ-enfant-reutilisable-nb-masques"
+                        >Combien voulez-vous en donner ?</label
+                        >
+                        <div class="button-group round toggle" id="champ-enfant-reutilisable-nb-masques">
+                            <input
+                                    type="radio"
+                                    id="champ-enfant-reutilisable-nb-masques-0"
+                                    value="0"
+                                    name="champ-enfant-reutilisable-nb-masques-group"
+                                    checked
+                            >
+                            <label class="button1" for="champ-enfant-reutilisable-nb-masques-0">0</label>
+                            <input
+                                    type="radio"
+                                    id="champ-enfant-reutilisable-nb-masques-2"
+                                    value="2"
+                                    name="champ-enfant-reutilisable-nb-masques-group"
+                            >
+                            <label class="button2" for="champ-enfant-reutilisable-nb-masques-2">2</label>
+                            <input
+                                    type="radio"
+                                    id="champ-enfant-reutilisable-nb-masques-5"
+                                    value="5"
+                                    name="champ-enfant-reutilisable-nb-masques-group"
+                            >
+                            <label class="button3" for="champ-enfant-reutilisable-nb-masques-5">5</label>
+                            <input
+                                    type="radio"
+                                    id="champ-enfant-reutilisable-nb-masques-10"
+                                    value="10"
+                                    name="champ-enfant-reutilisable-nb-masques-group"
+                            >
+                            <label class="button4" for="champ-enfant-reutilisable-nb-masques-10">10</label>
+                            <input
+                                    type="radio"
+                                    id="champ-enfant-reutilisable-nb-masques-15"
+                                    value="15"
+                                    name="champ-enfant-reutilisable-nb-masques-group"
+                            >
+                            <label class="button5" for="champ-enfant-reutilisable-nb-masques-15">15</label>
+                            <input
+                                    type="radio"
+                                    id="champ-enfant-reutilisable-nb-masques-20"
+                                    value="20"
+                                    name="champ-enfant-reutilisable-nb-masques-group"
+                            >
+                            <label class="button6" for="champ-enfant-reutilisable-nb-masques-20">20</label>
+                        </div>
+
+                    </div>
+
+                    <div class="input-group">
+                        <label
+                                id="champ-enfant-reutilisable-nb-masques-libre-label"
+                                for="champ-alias-enfant-reutilisable-nb-masques-libre"
+                        >Ou saisissez un nombre libre :</label
+                        >
+
+                        <input
+                                type="hidden"
+                                min="0"
+                                id="champ-enfant-reutilisable-nb-masques-libre"
+                                name="nbMasquesEnfantReutilisable"
+                                value="0"
+                        />
+                        <input
+                                type="number"
+                                min="0"
+                                id="champ-alias-enfant-reutilisable-nb-masques-libre"
+                                aria-labelledby="champ-alias-enfant-reutilisable-nb-masques-libre-label"
+                                placeholder="45"
+                        />
+                        <p class="exemple"></p>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+            <input type="hidden" th:value="*{identite.hashIdentite}" name="identiteDemandeur.hashIdentite">
+            <input type="hidden" th:value="*{identite.nombreMineurs}" name="identiteDemandeur.nombreMineurs">
+            <input type="hidden" th:value="*{identite.modeSaisie}" name="identiteDemandeur.modeSaisie">
+            <button type="submit" class="submit-button">
+                <img src="/btn-check.svg" alt="Icône Check" class="check"/>
+                <span>
+                Valider la remise des masques
+                </span>
+            </button>
+        </form>
+    </main>
+</div>
+<footer th:include="~{fragments/footer :: footer}">
+</footer>
+<script src="js/distribution-masques.js"></script>
+</body>
+</html>

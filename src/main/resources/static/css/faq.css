@@ -1,0 +1,46 @@
+.paragraphe-intro {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.question {
+  font-weight: bold;
+  max-width: 100%;
+}
+
+.liste-ordonnee {
+  padding: 1.6rem 0 1.6rem 2rem;
+  list-style: disc;
+}
+
+li {
+  line-height: 2.4rem;
+}
+
+.liste-ordonnee li + li {
+  margin-top: 1rem;
+}
+
+.liste-ordonnee li .etape {
+  font-weight: bold;
+}
+
+.niveau-2 {
+  list-style: circle;
+}
+
+.niveau-2 span {
+  font-style: italic;
+}
+
+.liste-tirets {
+  list-style-type: none;
+}
+
+.liste-tirets li + li {
+  margin-top: 0;
+}
+
+.liste-tirets li:before {
+  content: "- ";
+}

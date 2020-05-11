@@ -1,0 +1,50 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:dmgp;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    platform: h2
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  liquibase:
+    user: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        generate_statistics: false
+        show_sql: true
+        use_sql_comments: false
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+      path: /console
+      settings:
+        trace: false
+        web-allow-others: true
+  profiles:
+    active: dev
+  # Templates reloading during development
+  thymeleaf:
+    prefix: file:src/main/resources/templates/
+    cache: false
+  # Static resources reloading during development
+  resources:
+    static-locations: file:src/main/resources/static/
+    cache:
+      period: 0
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+hash:
+  pepper: kacfjboi133ybmsdyu53xxsmkeirjfodn
+server:
+  error:
+    whitelabel:
+      enabled: false
+cookie:
+  secure: false

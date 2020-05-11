@@ -1,0 +1,30 @@
+<header th:fragment="min_header(deconnexion)" xmlns:th="http://www.thymeleaf.org">
+
+    <div role="banner" class="header">
+        <div class="header_logo_deconnexion">
+            <a href="/" class="lien_logo">
+                <img
+                        class="header__logo"
+                        src="/MIN_Interieur_RVB.svg"
+                        alt="Ministère de l'intérieur. Liberté, égalité, fraternité."
+                />
+            </a>
+            <form th:if="${deconnexion == true}" action="/deconnexion" method="post" class="deconnexion">
+                <button type="submit" class="btn-deconnexion">
+                    Se déconnecter
+                    <img
+                            src="/out.svg"
+                            alt="Déconnexion"
+                    />
+                </button>
+            </form>
+        </div>
+        <h1 class="heading1">
+                <span>
+                    COVID-19
+                </span>
+            <span>Suivi des remises de masques des remettants</span>
+        </h1>
+
+    </div>
+</header>

@@ -1,0 +1,126 @@
+.retour {
+  margin-top: 4rem;
+}
+
+.retour a {
+  text-decoration: none;
+  color: #495057;
+}
+
+.retour a:before {
+  content: "←";
+  margin-right: 1rem;
+}
+
+.masque-heading {
+  margin-bottom: 0;
+}
+
+.formulaire-distribution .carte-notice {
+  max-width: 40rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.carte-notice p {
+  color: #000191;
+}
+
+b {
+  font-weight: 600;
+}
+
+.masques-groups {
+  margin-top: 2rem;
+}
+
+.masques-groups .heading4 {
+  margin-top: 0;
+}
+
+@media (min-width: 800px) {
+  .masques-groups {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "unique reutilisable";
+    align-items: center;
+    grid-gap: 0 1rem;
+  }
+}
+
+.masques-usage-unique {
+  grid-area: unique;
+}
+
+.masques-reutilisable {
+  grid-area: reutilisable;
+}
+
+.button-group {
+  display: grid;
+  grid-template-columns: 8.5rem 8.5rem 8.5rem;
+  grid-template-rows: auto auto auto;
+  grid-template-areas: "button1 button2 button3" "button4 button5 button6";
+  align-items: center;
+  grid-gap: 0.3rem 1rem;
+  max-width: 500px;
+}
+
+.button-group input {
+  display: none;
+}
+
+.button-group label {
+  text-align: center;
+  cursor: pointer;
+}
+
+.button-group input:checked + label,
+.button-group input:checked + label:active {
+  border-color: #000191;
+}
+
+.button-group label.button1 {
+  grid-area: button1;
+}
+
+.button-group label.button2 {
+  grid-area: button2;
+}
+
+.button-group label.button3 {
+  grid-area: button3;
+}
+
+.button-group label.button4 {
+  grid-area: button4;
+}
+
+.button-group label.button5 {
+  grid-area: button5;
+}
+
+.button-group label.button6 {
+  grid-area: button6;
+}
+
+hr.solid {
+  display: block;
+  text-align: left;
+  border-top: 0.3rem;
+  margin-top: 4rem;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.formulaire-distribution-masques .submit-button {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.formulaire-distribution-masques .check {
+  vertical-align: middle;
+  margin-right: 1rem;
+}

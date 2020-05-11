@@ -1,0 +1,82 @@
+---
+
+image: gradle:6.3-jdk11
+
+stages:
+  - test
+  - deploy
+
+TestRemettantBack:
+  tags:
+    - dmgp
+  stage: test
+  script:
+    - gradle check -Dorg.gradle.daemon=false
+  artifacts:
+    paths:
+      - build/reports
+    reports:
+      junit: build/test-results/**/TEST-*.xml
+
+TestRemettantFront:
+  image: node:12.16.2-alpine3.11
+  tags:
+    - dmgp
+  stage: test
+  before_script:
+    - npm install
+  script:
+    - npm run test
+
+.deploy:
+  stage: deploy
+  image:
+    name: alpine/git
+    entrypoint: [""]
+  environment:
+    name: $env_name
+    url: https://remettant-${env_name}.osc-fr1.scalingo.io/
+  resource_group: $env_name
+  tags:
+    - dmgp
+  before_script:
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo "$SSH_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - ssh-keyscan ssh.osc-fr1.scalingo.com >> ~/.ssh/known_hosts
+    - git remote add scalingo git@ssh.osc-fr1.scalingo.com:remettant-${env_name}.git ||
+        git remote set-url scalingo git@ssh.osc-fr1.scalingo.com:remettant-${env_name}.git
+    - git remote show -n scalingo
+  when: manual
+
+DeployToDev:
+  extends: .deploy
+  variables:
+    env_name: dev
+  script:
+    - git push scalingo HEAD:refs/heads/master -f
+
+DeployToRecette:
+  extends: .deploy
+  variables:
+    env_name: recette
+  script:
+    - git push scalingo HEAD:refs/heads/master -f
+
+DeployToPerf:
+  extends: .deploy
+  variables:
+    env_name: perf
+  script:
+    - git push scalingo HEAD:refs/heads/master -f
+
+DeployToProd:
+  extends: .deploy
+  variables:
+    env_name: prod
+  script:
+    - git push scalingo HEAD:refs/heads/master
+  only:
+    refs:
+      - master

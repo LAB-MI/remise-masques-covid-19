@@ -1,0 +1,268 @@
+<!DOCTYPE HTML>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <head th:insert="fragments/header :: header" th:remove="tag"></head>
+    <link rel="stylesheet" th:href="@{/css/saisie-identite-demandeur.css}"/>
+</head>
+
+<body>
+<body th:include="~{fragments/panneau_alerte}"></body>
+<div class="wrapper">
+    <header th:insert="~{fragments/mi_header :: min_header(deconnexion=true)}"></header>
+
+    <main role="main" id="main-formulaire">
+        <form id="formulaire-bon-perception"
+              class="formulaire-bon-perception"
+              accept-charset="UTF-8"
+              action="#"
+              method="post">
+            <h2 class="heading2">
+                Procéder à une remise de masques
+            </h2>
+
+            <div class="faq">
+                <a th:href="@{/faq}"><span>Vous avez des questions ?</span> Consultez la FAQ</a>
+            </div>
+
+            <h3 class="heading3">
+                Informations sur le demandeur de masques
+            </h3>
+
+            <div class="qr-buttons">
+                <button class="button-inline" id="ouvrir-qr-scanner" type="button"
+                        aria-haspopup="modal-scanner"
+                        aria-controls="modal-scanner">
+                    <img src="/scan.svg" alt="Icône scan" class="scan"/>
+                    Scanner le QR code
+                </button>
+
+                <p class="info-scan" id="info-scan">
+                    <img src="/scan-grey.png" alt="Icône scan"/>
+                    <span class="scan-message">
+                    Une erreur ?
+                    <br/>
+                    <span class="nouveau-scan" id="nouveau-scan">Scanner de nouveau un QR code</span>
+                    </span>
+                </p>
+            </div>
+
+            <p class="consignes">
+                En cas d'erreur ou d'absence de bon, vous pouvez modifier les champs suivants.
+                Tous les champs sont obligatoires.
+            </p>
+
+            <div class="input-group">
+                <label
+                        id="champ-prenom-label"
+                        for="champ-prenom"
+                >Prénom</label
+                >
+
+                <input
+                        type="text"
+                        id="champ-prenom"
+                        name="prenom"
+                        aria-labelledby="champ-prenom-label"
+                        autocomplete="given-name"
+                        placeholder="Jean"
+                        required
+                        autofocus
+                        aria-invalid="true"
+                />
+
+                <span class="validity" aria-hidden="true"></span>
+
+                <p class="exemple"></p>
+
+            </div>
+
+            <div class="input-group">
+                <label
+                        id="champ-nom-label"
+                        for="champ-nom"
+                >Nom</label
+                >
+                <input
+                        type="text"
+                        id="champ-nom"
+                        name="nom"
+                        aria-labelledby="champ-nom-label"
+                        autocomplete="family-name"
+                        placeholder="Dupont"
+                        aria-invalid="true"
+                        required
+                />
+
+                <span class="validity" aria-hidden="true"></span>
+
+                <p class="exemple"></p>
+
+            </div>
+
+            <div class="input-group">
+                <label
+                        id="champ-date-naissance-label"
+                        for="champ-date-naissance"
+                >Date de naissance (au format jj/mm/aaaa)</label
+                >
+                <input
+                        type="text"
+                        pattern="^([0][1-9]|[1-2][0-9]|30|31)\/([0][1-9]|10|11|12)\/(19[0-9][0-9]|20[0-1][0-9]|2020)"
+                        inputmode="numeric"
+                        id="champ-date-naissance"
+                        name="date-naissance"
+                        aria-labelledby="champ-date-naissance-label"
+                        aria-invalid="true"
+                        autocomplete="bday"
+                        placeholder="01/01/1970"
+                        maxlength="10"
+                        required
+                />
+
+                <span class="validity" aria-hidden="true"></span>
+
+                <p class="exemple"></p>
+
+            </div>
+
+            <div class="input-group">
+                <label
+                        id="champ-lieu-naissance-label"
+                        for="champ-lieu-naissance"
+                >Lieu de naissance</label
+                >
+
+                <input
+                        type="text"
+                        id="champ-lieu-naissance"
+                        name="lieu-naissance"
+                        aria-labelledby="champ-lieu-naissance-label"
+                        aria-invalid="true"
+                        placeholder="Lyon"
+                        required
+                />
+
+                <span class="validity" aria-hidden="true"></span>
+
+                <p class="exemple"></p>
+
+            </div>
+
+            <div class="input-group">
+                <label
+                        id="champ-nombre-mineurs-label"
+                        for="champ-nombre-mineurs"
+                >Pour combien de mineurs l'usager vient-il récupérer des masques ?</label
+                >
+
+                <input
+                        type="number"
+                        min="0"
+                        value="0"
+                        id="champ-nombre-mineurs"
+                        name="nombre-mineurs-expose"
+                        aria-labelledby="champ-nombre-mineurs-label"
+                        aria-invalid="true"
+                        placeholder="1"
+                        required
+                />
+
+                <span class="validity" aria-hidden="true"></span>
+
+                <p class="exemple"></p>
+
+            </div>
+
+            <button type="submit" class="submit-button">
+                <span>
+                <img src="/btn-check.svg" alt="Icône Check" class="check"/>
+                </span>
+                Valider les informations
+            </button>
+        </form>
+
+        <form id="actual-formulaire-bon-perception" class="actual-formulaire-bon-perception"
+              accept-charset="UTF-8" th:action="@{/saisie-distribution-masques}" method="post">
+            <input
+                    type="hidden"
+                    value="MANUEL"
+                    id="champ-mode-saisie"
+                    name="modeSaisie"
+                    required
+            />
+
+            <input
+                    type="hidden"
+                    value=""
+                    id="champ-hash-identite"
+                    name="hashIdentite"
+                    required
+            />
+
+            <input
+                    type="hidden"
+                    value=""
+                    id="champ-nombre-mineurs-hidden"
+                    name="nombreMineurs"
+                    required
+            />
+            <input type="hidden" id="timezone" name="timezone">
+        </form>
+    </main>
+
+    <div class="modal-scanner"
+         id="modal-scanner"
+         role="dialog"
+         aria-labelledby="modal-header-1-mobile"
+         aria-describedby="dialog-desc"
+         aria-modal="true"
+         aria-hidden="true"
+         tabindex="-1">
+        <div role="document" class="modal-content" id="modal-content">
+            <div class="modal-header">
+                <div class="modal-header-text desktop"
+                     id="modal-header-1-desktop">
+                    Visez le QR Code pour lire les informations
+                </div>
+                <div class="modal-header-text mobile"
+                     id="modal-header-1-mobile">
+                    Visez le QR Code
+                </div>
+                <button type="button"
+                        id="fermer-modal-scanner"
+                        aria-label="Fermer"
+                        data-dismiss="modal-scanner"
+                        title="Fermer la fenêtre de lecteur de QR Code">
+                    &times;
+                </button>
+                <div class="modal-header-info desktop">
+                    Essayez d'augmenter la luminosité du téléphone
+                </div>
+                <div class="modal-header-info mobile">
+                    Essayez d'augmenter la luminosité
+                </div>
+            </div>
+            <canvas id="canvas-scanner"></canvas>
+        </div>
+    </div>
+
+    <div class="carte-notice consignes">
+        <p>
+            À noter : la personne qui se présente peut être mandatée par une personne ne pouvant se déplacer. Les
+            informations du demandeur et du mandaté doivent être vérifiées, mais seules les informations du
+            demandeur doivent être validées dans l’outil.
+
+        </p>
+    </div>
+</div>
+
+<footer th:include="~{fragments/footer :: footer}">
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.2.0/dist/jsQR.min.js"
+        integrity="sha384-fVQ68j30WttsqdqHUBr2djROMEjD7UoeMEk2pagjqIJmCENsHtJ1CffIZadLmILT"
+        crossorigin="anonymous"></script>
+<script src="js/saisie-identite-demandeur.js"></script>
+</body>
+</html>

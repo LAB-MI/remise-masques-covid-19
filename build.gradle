@@ -1,0 +1,122 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.2.6.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'com.moowork.node' version "1.3.1"
+}
+
+group = 'fr.gouv.interieur.dmgp'
+version = '1.0.0'
+
+ext {
+    apacheCommonsVersion = '3.10'
+    archunitVersion = '0.13.1'
+    assertjVersion = '3.15.0'
+    bootstrapVersion = '4.4.1-1'
+    h2Version = '1.4.200'
+    jqueryVersion = '3.5.0'
+    junitPlatformVersion = '1.6.2'
+    junitVersion = '5.6.2'
+    liquibaseVersion = '3.8.9'
+    logbackVersion = '1.2.3'
+    logbackJacksonVersion = '0.1.5'
+    logbackJsonClassicVersion = '0.1.5'
+    lombokVersion = '1.18.12'
+    micrometerVersion = '1.3.7'
+    mockitoVersion = '3.3.3'
+    postgresqlVersion = '42.2.12'
+    snakeyamlVersion = '1.26'
+    springBootVersion = '2.2.6.RELEASE'
+    swaggerVersion = '2.9.2'
+    webjarsLocatorVersion = '0.39'
+}
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation "org.springframework.boot:spring-boot-starter:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+
+    implementation "ch.qos.logback:logback-classic:${logbackVersion}"
+    implementation "ch.qos.logback.contrib:logback-json-classic:${logbackJsonClassicVersion}"
+    implementation "ch.qos.logback.contrib:logback-jackson:${logbackJacksonVersion}"
+    implementation "com.h2database:h2:${h2Version}"
+    implementation "io.springfox:springfox-swagger2:${swaggerVersion}"
+    implementation "io.springfox:springfox-swagger-ui:${swaggerVersion}"
+    implementation "io.micrometer:micrometer-registry-prometheus:${micrometerVersion}"
+    implementation "org.apache.commons:commons-lang3:${apacheCommonsVersion}"
+    implementation "org.liquibase:liquibase-core:${liquibaseVersion}"
+    implementation "org.postgresql:postgresql:${postgresqlVersion}"
+    implementation "org.yaml:snakeyaml:${snakeyamlVersion}"
+
+    // UI
+    implementation "org.webjars:bootstrap:${bootstrapVersion}"
+    implementation "org.webjars:jquery:${jqueryVersion}"
+    implementation "org.webjars:webjars-locator:${webjarsLocatorVersion}"
+
+    // Tests
+    testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+    testImplementation "org.assertj:assertj-core:${assertjVersion}"
+    testImplementation "com.tngtech.archunit:archunit-junit5:${archunitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testImplementation("org.junit.platform:junit-platform-commons:${junitPlatformVersion}")
+    testRuntimeOnly("org.junit.platform:junit-platform-engine:${junitPlatformVersion}")
+    testImplementation "org.mockito:mockito-core:${mockitoVersion}"
+    testImplementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
+
+    // Annotations
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    // Dev
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+    afterSuite { desc, result ->
+        if (!desc.parent) {
+            println "\nTest result: ${result.resultType}"
+            println "Test summary: ${result.testCount} tests, " +
+                    "${result.successfulTestCount} succeeded, " +
+                    "${result.failedTestCount} failed, " +
+                    "${result.skippedTestCount} skipped"
+        }
+    }
+}
+
+task jsTest(type: NpmTask, dependsOn: 'npmInstall') {
+    args = ['run', 'test']
+}
+
+task jsBuild(type: NpmTask, dependsOn: 'npmInstall') {
+    args = ['run', 'build']
+}
+assemble.mustRunAfter(jsBuild)
+
+task fullStackTest(dependsOn: ['test', 'check', 'jsTest']) {}
+task fullStackBuild(dependsOn: ['jsBuild', 'assemble', 'fullStackTest']) {}
+
+wrapper {
+    gradleVersion = '6.3'
+}
